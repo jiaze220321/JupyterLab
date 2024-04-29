@@ -25,6 +25,7 @@ import {
   IHelpMenu,
   IKernelMenu,
   IMainMenu,
+  IMyMenu,
   IRunMenu,
   ITabsMenu,
   IViewMenu,
@@ -123,6 +124,8 @@ export namespace CommandIDs {
 
   export const openHelp = 'helpmenu:open';
 
+  export const openMy = 'mymenu:open';
+
   export const getKernel = 'helpmenu:get-kernel';
 
   export const openFirst = 'mainmenu:open-first';
@@ -165,6 +168,7 @@ const plugin: JupyterFrontEndPlugin<IMainMenu> = {
 
       // Trigger single update
       menu.update();
+      console.log('menu update', menu);
     }
 
     // Only add quit button if the back-end supports it by checking page config.
@@ -178,6 +182,7 @@ const plugin: JupyterFrontEndPlugin<IMainMenu> = {
     createRunMenu(app, menu.runMenu, trans);
     createViewMenu(app, menu.viewMenu, trans);
     createHelpMenu(app, menu.helpMenu, trans);
+    createMyMenu(app, menu.myMenu, trans);
 
     // The tabs menu relies on lab shell functionality.
     if (labShell) {
@@ -221,6 +226,10 @@ const plugin: JupyterFrontEndPlugin<IMainMenu> = {
     commands.addCommand(CommandIDs.openHelp, {
       label: trans.__('Open Help Menu'),
       execute: () => activateMenu(menu.helpMenu)
+    });
+    commands.addCommand(CommandIDs.openMy, {
+      label: trans.__('Open My Menu'),
+      execute: () => activateMenu(menu.myMenu)
     });
     commands.addCommand(CommandIDs.openFirst, {
       label: trans.__('Open First Menu'),
@@ -755,6 +764,28 @@ function createHelpMenu(
   });
 }
 
+/**
+ * Create the basic `My` menu.
+ */
+function createMyMenu(
+  app: JupyterFrontEnd,
+  menu: IMyMenu,
+  trans: TranslationBundle
+): void {
+  const { commands, shell } = app;
+  addSemanticCommand({
+    id: CommandIDs.getKernel,
+    commands,
+    shell,
+    semanticCommands: menu.getKernel,
+    default: {
+      label: trans.__('Get Kernel My'),
+      isVisible: false
+    },
+    trans
+  });
+}
+
 export default [plugin, recentsMenuPlugin];
 
 /**
@@ -880,6 +911,7 @@ namespace Private {
         }),
       menuFactory
     ).forEach(menu => {
+      console.log('for each menu:', menu);
       menus.push(menu);
       addMenu(menu);
     });

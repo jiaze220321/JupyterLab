@@ -221,6 +221,12 @@
         "label": "Help",
         "items": [],
         "rank": 1000
+      },
+      {
+        "id": "jp-mainmenu-my",
+        "label": "My",
+        "items": [],
+        "rank": 1001
       }
     ],
     "context": [
