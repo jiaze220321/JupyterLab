@@ -772,18 +772,18 @@ function createMyMenu(
   menu: IMyMenu,
   trans: TranslationBundle
 ): void {
-  const { commands, shell } = app;
-  addSemanticCommand({
-    id: CommandIDs.getKernel,
-    commands,
-    shell,
-    semanticCommands: menu.getKernel,
-    default: {
-      label: trans.__('Get Kernel My'),
-      isVisible: false
-    },
-    trans
-  });
+  // const { commands, shell } = app;
+  // addSemanticCommand({
+  //   id: CommandIDs.getKernel,
+  //   commands,
+  //   shell,
+  //   semanticCommands: menu.getKernel,
+  //   default: {
+  //     label: trans.__('Get Kernel My'),
+  //     isVisible: false
+  //   },
+  //   trans
+  // });
 }
 
 export default [plugin, recentsMenuPlugin];
