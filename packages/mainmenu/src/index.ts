@@ -15,3 +15,4 @@ export * from './settings';
 export * from './view';
 export * from './tabs';
 export * from './tokens';
+export * from './my';

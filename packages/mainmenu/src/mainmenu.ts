@@ -9,6 +9,7 @@ import { Menu, MenuBar } from '@lumino/widgets';
 import { EditMenu } from './edit';
 import { FileMenu } from './file';
 import { HelpMenu } from './help';
+import { MyMenu } from './my';
 import { KernelMenu } from './kernel';
 import { RunMenu } from './run';
 import { SettingsMenu } from './settings';
@@ -65,6 +66,20 @@ export class MainMenu extends MenuBar implements IMainMenu {
       this._helpMenu = new HelpMenu({
         commands: this._commands,
         rank: 1000,
+        renderer: MenuSvg.defaultRenderer
+      });
+    }
+    return this._helpMenu;
+  }
+
+  /**
+   * The application "Help" menu.
+   */
+  get myMenu(): MyMenu {
+    if (!this._myMenu) {
+      this._myMenu = new MyMenu({
+        commands: this._commands,
+        rank: 1001,
         renderer: MenuSvg.defaultRenderer
       });
     }
@@ -216,6 +231,11 @@ export class MainMenu extends MenuBar implements IMainMenu {
           this._helpMenu = menu;
         }
         break;
+      case 'jp-mainmenu-my':
+        if (!this._myMenu && menu instanceof MyMenu) {
+          this._myMenu = menu;
+        }
+        break;
     }
   }
 
@@ -226,6 +246,7 @@ export class MainMenu extends MenuBar implements IMainMenu {
     this._editMenu?.dispose();
     this._fileMenu?.dispose();
     this._helpMenu?.dispose();
+    this._myMenu?.dispose();
     this._kernelMenu?.dispose();
     this._runMenu?.dispose();
     this._settingsMenu?.dispose();
@@ -305,6 +326,13 @@ export class MainMenu extends MenuBar implements IMainMenu {
           renderer: MenuSvg.defaultRenderer
         });
         break;
+      case 'jp-mainmenu-my':
+        menu = new MyMenu({
+          commands,
+          rank,
+          renderer: MenuSvg.defaultRenderer
+        });
+        break;
       default:
         menu = new RankedMenu({
           commands,
@@ -339,6 +367,7 @@ export class MainMenu extends MenuBar implements IMainMenu {
   private _editMenu: EditMenu;
   private _fileMenu: FileMenu;
   private _helpMenu: HelpMenu;
+  private _myMenu: MyMenu;
   private _kernelMenu: KernelMenu;
   private _runMenu: RunMenu;
   private _settingsMenu: SettingsMenu;
