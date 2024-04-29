@@ -94,6 +94,7 @@
     "@jupyterlab/mermaid-extension": "^4.2.0-beta.3",
     "@jupyterlab/metadataform": "^4.2.0-beta.3",
     "@jupyterlab/metadataform-extension": "^4.2.0-beta.3",
+    "@jupyterlab/my-extension": "^4.2.0-beta.3",
     "@jupyterlab/nbconvert-css": "^4.2.0-beta.3",
     "@jupyterlab/nbformat": "^4.2.0-beta.3",
     "@jupyterlab/notebook": "^4.2.0-beta.3",

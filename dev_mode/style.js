@@ -31,6 +31,7 @@ import '@jupyterlab/markedparser-extension/style/index.js';
 import '@jupyterlab/mathjax-extension/style/index.js';
 import '@jupyterlab/mermaid-extension/style/index.js';
 import '@jupyterlab/metadataform-extension/style/index.js';
+import '@jupyterlab/my-extension/style/index.js';
 import '@jupyterlab/notebook-extension/style/index.js';
 import '@jupyterlab/pdf-extension/style/index.js';
 import '@jupyterlab/pluginmanager-extension/style/index.js';

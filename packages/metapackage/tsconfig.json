@@ -293,6 +293,9 @@
     },
     {
       "path": "../workspaces-extension"
+    },
+    {
+      "path": "../my-extension"
     }
   ]
 }
